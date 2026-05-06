@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Perigee.Logging/Perigee.Logging.csproj" />
+  <Project Path="ExampleConsoleApp/ExampleConsoleApp.csproj" />
+</Solution>

@@ -1,6 +1,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+namespace Perigee.Logging;
+
 public static class NonGenericLoggerExtensions
 {
     public static IServiceCollection AddNonGenericLoggerSupport(this IServiceCollection services)

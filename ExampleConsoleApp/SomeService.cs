@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace GenericLogger;
+namespace ExampleConsoleApp;
 
 public class SomeService
 {
