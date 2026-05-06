@@ -1,6 +1,7 @@
-using GenericLogger;
+using ExampleConsoleApp;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Perigee.Logging;
 
 var builder = Host.CreateApplicationBuilder(args);
 

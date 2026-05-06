@@ -1,0 +1,22 @@
+mode: ContinuousDelivery
+branches:
+  main:
+    regex: ^master$|^main$
+    label: ""
+    increment: Patch
+    is-release-branch: true
+  pull-request:
+    regex: ^pull[/-]|^PR[/-]|^refs/pull/
+    label: pr
+    increment: Inherit
+  feature:
+    regex: ^feature[/-]
+    label: ci
+    increment: Patch
+    is-release-branch: false
+  hotfix:
+    regex: ^hotfix/
+    label: hotfix
+    increment: Patch
+ignore:
+  sha: []
