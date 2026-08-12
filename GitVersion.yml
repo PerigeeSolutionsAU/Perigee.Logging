@@ -2,7 +2,7 @@ mode: ContinuousDelivery
 branches:
   main:
     regex: ^master$|^main$
-    label: ""
+    label: "beta"
     increment: Patch
     is-release-branch: true
   pull-request:

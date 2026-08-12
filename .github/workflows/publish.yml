@@ -12,13 +12,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-and-publish:
-    name: Build, Pack & Publish
+  build-and-pack:
+    name: Build & Pack
     runs-on: ubuntu-latest
-    env:
-      MYGET_FEED_URL: ${{ secrets.MYGET_FEED_URL || vars.MYGET_FEED_URL }}
-      MYGET_API_KEY: ${{ secrets.MYGET_API_KEY }}
-      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+    outputs:
+      semVer: ${{ steps.gitversion.outputs.semVer }}
+      branchName: ${{ steps.gitversion.outputs.branchName }}
 
     steps:
       - name: Checkout Repository
@@ -36,7 +35,7 @@ jobs:
       - name: Install GitVersion
         uses: gittools/actions/gitversion/setup@v3
         with:
-          versionSpec: "6.x"
+          versionSpec: '6.x'
 
       - name: Execute GitVersion
         id: gitversion
@@ -65,6 +64,33 @@ jobs:
             --output ./nupkg \
             /p:PackageVersion=${{ steps.gitversion.outputs.semVer }}
 
+      - name: Upload NuGet Packages Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: nuget-packages
+          path: ./nupkg/*
+
+  publish:
+    name: Publish Packages
+    needs: build-and-pack
+    runs-on: ubuntu-latest
+    env:
+      MYGET_FEED_URL: ${{ secrets.MYGET_FEED_URL || vars.MYGET_FEED_URL }}
+      MYGET_API_KEY: ${{ secrets.MYGET_API_KEY }}
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+
+    steps:
+      - name: Download NuGet Packages Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: nuget-packages
+          path: ./nupkg
+
+      - name: Setup .NET SDK
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+
       - name: Publish to MyGet
         if: ${{ env.MYGET_FEED_URL != '' && env.MYGET_API_KEY != '' }}
         run: |
@@ -74,7 +100,7 @@ jobs:
             --skip-duplicate
 
       - name: Publish to NuGet.org
-        if: ${{ steps.gitversion.outputs.branchName == 'main' && env.NUGET_API_KEY != '' }}
+        if: ${{ startsWith(github.ref, 'refs/tags/v') && env.NUGET_API_KEY != '' }}
         run: |
           dotnet nuget push ./nupkg/*.nupkg \
             --api-key "$NUGET_API_KEY" \
