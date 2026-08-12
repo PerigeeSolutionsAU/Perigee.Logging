@@ -44,7 +44,6 @@ jobs:
       - name: Display Calculated Version
         run: |
           echo "SemVer: ${{ steps.gitversion.outputs.semVer }}"
-          echo "NuGetVersionV2: ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
           echo "FullSemVer: ${{ steps.gitversion.outputs.fullSemVer }}"
 
       - name: Restore Dependencies
@@ -59,7 +58,7 @@ jobs:
             -c Release \
             --no-build \
             --output ./nupkg \
-            /p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}
+            /p:PackageVersion=${{ steps.gitversion.outputs.semVer }}
 
       - name: Publish to MyGet
         if: ${{ env.MYGET_FEED_URL != '' && env.MYGET_API_KEY != '' }}
