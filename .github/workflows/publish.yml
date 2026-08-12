@@ -30,13 +30,13 @@ jobs:
             10.0.x
 
       - name: Install GitVersion
-        uses: gitversion/setup-gitversion@v3
+        uses: gittools/actions/gitversion/setup@v3
         with:
-          versionSpec: "6.x"
+          versionSpec: '6.x'
 
       - name: Execute GitVersion
         id: gitversion
-        uses: gitversion/execute@v3
+        uses: gittools/actions/gitversion/execute@v3
         with:
           useConfigFile: true
           configFilePath: GitVersion.yml
