@@ -1,0 +1,14 @@
+mode: ContinuousDelivery
+branches:
+  main:
+    regex: ^main$
+    label: beta
+    is-release-branch: false
+    increment: Patch
+    track-merge-target: false
+  hotfix:
+    regex: ^hotfix/
+    label: hotfix
+    increment: Patch
+ignore:
+  sha: []
