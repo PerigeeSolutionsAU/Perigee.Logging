@@ -1,11 +1,19 @@
 mode: ContinuousDelivery
 branches:
   main:
-    regex: ^main$
-    label: beta
-    is-release-branch: false
+    regex: ^master$|^main$
+    label: ""
     increment: Patch
-    track-merge-target: false
+    is-release-branch: true
+  pull-request:
+    regex: ^pull[/-]|^PR[/-]|^refs/pull/
+    label: pr
+    increment: Inherit
+  feature:
+    regex: ^feature[/-]
+    label: ci
+    increment: Patch
+    is-release-branch: false
   hotfix:
     regex: ^hotfix/
     label: hotfix
