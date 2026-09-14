@@ -1,3 +1,8 @@
+![CI](https://github.com/perigeesolutionsau/Perigee.Logging/actions/workflows/publish.yml/badge.svg)
+
+[![NuGet Version](https://img.shields.io/nuget/v/Perigee.Logging)](https://www.nuget.org/packages/Perigee.Logging)
+
+
 # Perigee.Logging
 
 This library contains stuff I like to use for logging with .NET projects
