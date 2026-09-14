@@ -1,6 +1,6 @@
 ![CI](https://github.com/perigeesolutionsau/Perigee.Logging/actions/workflows/publish.yml/badge.svg)
 
-[![NuGet Version](https://img.shields.io/nuget/v/Perigee.Logging)](https://www.nuget.org/packages/Perigee.Logging)
+[![Perigee.Logging](https://img.shields.io/nuget/v/Perigee.Logging?label=Perigee.Logging%3A%20NuGet)](https://www.nuget.org/packages/Perigee.Logging)
 
 
 # Perigee.Logging
