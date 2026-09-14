@@ -1,4 +1,6 @@
-![CI](https://github.com/perigeesolutionsau/Perigee.Logging/actions/workflows/publish.yml/badge.svg)
+[![CI](https://img.shields.io/myget/steveski-ci/vpre/Perigee.Logging?label=CI)](https://www.myget.org/feed/steveski-ci/package/nuget/Perigee.Logging)
+
+![Build](https://github.com/perigeesolutionsau/Perigee.Logging/actions/workflows/publish.yml/badge.svg)
 
 [![Perigee.Logging](https://img.shields.io/nuget/v/Perigee.Logging?label=Perigee.Logging%3A%20NuGet)](https://www.nuget.org/packages/Perigee.Logging)
 
